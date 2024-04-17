@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<!--    因为配置数据源射击隐私问题，通常都是写到.properties中
+        在配置数据源的时候引用文件内的数据所以要引入外部文件 value = #{key}
+        使用context:property-placeholder 引入  这个标签需要引入约束：
+                  xmlns:context="http://www.springframework.org/schema/context"
+        location="类地址"
+-->
+
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+<!--       jdbcTemplate 配置-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<!--        setter方法注入  装配数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    druidDataSource  配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+<!--        setter方法注入  装配数据源-->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+<!--   Dao层组件   实现类-->
+    <bean id="studentDao" class="com.ls.Dao.imp.StudentDaoImp">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+<!--    Service 层组件-->
+    <bean id="studentServiceImp" class="com.ls.service.imp.StudentServiceImp">
+        <!--        注入 Dao的实现类-->
+        <property name="studentDao" ref="studentDao"/>
+    </bean>
+    <!--        Controller 层组件-->
+    <bean id="studentController" class="com.ls.controller.StudentController">
+        <property name="studentService" ref="studentServiceImp"/>
+
+    </bean>
+</beans>

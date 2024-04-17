@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    基于构造器进行依赖注入（单个参数）-->
+<!--    首先要确保两个组件都要在[ioc]容器中
+         在需要进行DI的组件中 用<constructor-arg>标签来赋值
+                    ref ： 引用ioc中其他组件    其他bean的id
+                    value： 就是普通值
+ -->
+<!--    tips： 组件的先后顺序无所谓，因为ioc容器会先创建组件，然后在赋值（DI）-->
+
+    <bean id="userDao" class="com.ls.ioc_02.UserDao"/>
+    <bean id="userService" class="com.ls.ioc_02.UserService">
+        <constructor-arg ref="userDao"/>
+    </bean>
+</beans>

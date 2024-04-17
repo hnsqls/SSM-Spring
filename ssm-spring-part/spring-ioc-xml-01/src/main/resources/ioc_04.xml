@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    基于setter方法DI-->
+<!--    确保组件类中有setter方法
+            编写<property> 进行setter方法注入
+                name  指的是set方法名字改为首字母小写
+                          例如   setName   那么参数就是name
+                value  基本类型
+                ref    引用其他bean值为其他bean的id
+-->
+
+
+    <bean id="userDao" class="com.ls.ioc_04.UserDao"/>
+    <bean id="userService" class="com.ls.ioc_04.UserService">
+        <property name="name" value="ls"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+</beans>

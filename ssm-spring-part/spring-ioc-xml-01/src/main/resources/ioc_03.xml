@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    多个参数构造器注入-->
+    <bean id="userDao" class="com.ls.ioc_03.UserDao"/>
+<!--   按照参数的顺序DI -->
+    <bean id="userService" class="com.ls.ioc_03.UserService">
+        <constructor-arg value="20"/>
+        <constructor-arg value="ls"/>
+        <constructor-arg ref="userDao"/>
+    </bean>
+
+<!--    通过参数的名赋值-->
+    <bean id="userService" class="com.ls.ioc_03.UserService">
+        <constructor-arg name = "age" value="20"/>
+        <constructor-arg name="name" value="ls"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+
+<!--通过参数下标赋值  从0开始  从左开始-->
+    <bean id="userService" class="com.ls.ioc_03.UserService">
+        <constructor-arg index="0" value="20"/>
+        <constructor-arg index="1" value="ls"/>
+        <constructor-arg index="2" ref="userDao"/>
+    </bean>
+</beans>

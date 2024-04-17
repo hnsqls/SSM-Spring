@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    周期性方法-->
+<!--    destroy-method ="方法名"
+        init-method = "方法名"
+                需要注意的是：方法必须有public void 修饰 并且不能有参数’
+        -->
+
+<!--    经过测验发现当ioc容器创建并实例化的时候，就执行了周期性方法 由此引入bean的作用域-->
+<!--    bean的作用域
+           <bean> 中scope 属性
+                     singleton  在实例化ioc容器时就创建bean  默认
+                     prototype  在获取bean对象的时候才会创建bean
+
+ -->
+
+
+    <bean id="javaBean" class="com.ls.ioc_06.JavaBean"  destroy-method="init" init-method="init"/>
+</beans>

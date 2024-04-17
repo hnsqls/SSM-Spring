@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    //告知spring注解使用的范围-->
+<!--    base-package = "包1，包2，包3"
+             指定扫描的范围
+            会连带扫描包的子包，所以尽可能的精确
+-->
+    
+<!--    方式一，扫描目标包的所有组件-->
+<!--    <context:component-scan base-package="com.ls.ioc_01"/>-->
+<!--    -->
+<!--    方式二，扫描目标包特定的组件-->
+<!--    <context:component-scan base-package="com.ls.ioc_01" use-default-filters="false">-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+<!--    </context:component-scan>-->
+<!--    方式三：扫描目标包，排除特定组件-->
+<!--    <context:component-scan base-package="com.ls.ioc_01">-->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
+<!--    </context:component-scan>-->
+</beans>
